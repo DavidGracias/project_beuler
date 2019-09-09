@@ -2,7 +2,7 @@ package project_beuler;
 
 import java.util.ArrayList;
 
-public class problem3 {
+public class problem003 {
 
 //	The prime factors of 13195 are 5, 7, 13 and 29.
 //

@@ -1,6 +1,6 @@
 package project_beuler;
 
-public class problem6 {
+public class problem006 {
 	
 //	The sum of the squares of the first ten natural numbers is,
 //

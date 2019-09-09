@@ -1,6 +1,6 @@
 package project_beuler;
 
-public class problem8 {
+public class problem008 {
 	
 //	The four adjacent digits in the 1000-digit number that have the greatest product are 9 × 9 × 8 × 9 = 5832.
 //
@@ -20,7 +20,7 @@ public class problem8 {
 		for(int index = 0; index < lists.length; index++) {
 			for(int i = 0; i <= lists[index].length()-length; i++) {
 				long temp = 1;
-				for(int x = i; x <= i+length; x++)
+				for(int x = i; x < i+length; x++)
 					temp*= Integer.parseInt(lists[index].charAt(x)+"");
 				highest = Math.max(highest, temp);
 			}
