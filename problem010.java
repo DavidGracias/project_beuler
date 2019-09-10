@@ -13,20 +13,19 @@ public class problem010 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		int sum = 0;
+		long sum = 0;
 		int n = 2000000;
 		
 		primes.add(2);
 		sum += 2;
 		
-		for(int i = 3; i < n; i+=2) {
+		for(int i = 3; i <= n; i+=2) {
 			if( isPrime(i) ) {
-				System.out.println(i);
 				primes.add(i);
 				sum += i;
 			}
 		}
-		System.out.println("\n"+sum);
+		System.out.println(sum);
 	}
 	public static boolean isPrime(int n) {
 		for(int i = 0; i < primes.size(); i++) {
