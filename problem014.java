@@ -17,20 +17,25 @@ public class problem014 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int highest = 0;
+		int num = 1;
 		int n = 1000000;
-		for(int i = 0; i < n; i++) {
-			highest = Math.max(highest, sequence(i));
+		for(int i = n-1; i > 1; i--) {
+			int temp = sequence(i);
+			if(temp > highest)
+				num = i;
+			highest = Math.max(highest, temp);
 		}
-		System.out.println(highest);
+		System.out.println(num);
 	}
 	
-	public static int sequence(int n) {
+	public static int sequence(long n) {
 		int i;
 		for(i = 0; n != 1; i++) {
 			if(n%2 == 0)
 				n = n/2;
 			else
 				n = 3*n+1;
+			System.out.println(n);
 		}
 		return i;
 	}
