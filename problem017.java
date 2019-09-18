@@ -25,61 +25,7 @@ public class problem017 {
 
 	}
 	public static int numLetters(int n) {
-		int sum = 0;
-		int[][] places = new int[][] {
-			{
-				"thousand".length(),
-				3
-			},
-			{
-				"hundred".length(),
-				2
-			},
-			{
-				"".length(),
-				0
-			},
-		};
-		for(int i = places.length-1; i >=0; i++) {
-			switch( (int) (n/Math.pow(10, places[i][1]))%10 ) {
-				case 0: break;
-			//5 letters
-				case 8: case 7: case 3: sum+=5-(8);
-					
-			//4 letters
-				case 9: case 5: case 4: sum+=4-(4);
-					
-			//3 letters
-				case 6: case 2: case 1: sum+=4;
-				
-				default: sum+=places[i][0];
-			}
-		}
-		int tens = Integer.parseInt( (n+"").substring((n+"").length()-2, (n+"").length()) );
-		if(tens/10 == 9 || tens/10 == 7 || tens/10 == 6)
-			sum+= 2;
-		else if(tens/10 == 8 || tens/10 == 5 || tens/10 == 4 || tens/10 == 3)
-			sum+=1;
-		else if(tens/10 == 2)
-			sum+=3;
-		else if(tens/10 == 1) {
-			switch(tens) {
-			case 19:
-			case 18:
-			case 17:
-			case 16:
-			case 15:
-			case 14:
-			case 13:
-			case 12:
-			case 11:
-			case 10:
-			}
-		}
-		
-		
-		
-		return sum;
+		return 0;
 	}
 
 }
