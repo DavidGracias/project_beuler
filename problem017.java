@@ -25,7 +25,70 @@ public class problem017 {
 
 	}
 	public static int numLetters(int n) {
-		return 0;
+		String length = thousands(n) + hundreds(n);
+
+		if(n > 100 && n%100 > 0)
+			length += "and";
+		
+		length+= tens(n) + ones(n);
+		System.out.println(length);
+		return length.length();
+	}
+	public static String thousands(int n) {
+		int digit = 1000;
+		String append = "thousand";
+		if(n < digit)
+			return "";
+		return ones( (n/digit) % digit)+append;
+	}
+	public static String hundreds(int n) {
+		int digit = 100;
+		String append = "hundred";
+		if(n < digit || n == 1000)
+			return "";
+		return ones( (n/digit) % digit)+append;
+	}
+	public static String tens(int n) {
+		switch( (n/10)%10 ) {
+			case 9: return "ninety";
+			case 8: return "eighty";
+			case 7: return "seventy";
+			case 6: return "sixty";
+			case 5: return "fifty";
+			case 4: return "forty";
+			case 3: return "thirty";
+			case 2: return "twenty";
+			case 1: return teens(n%100);
+			default: return "";
+		}
+	}
+	public static String teens(int n) {
+		switch(n) {
+			case 19: return "teen";
+			case 18: return "een";
+			case 17: return "teen";
+			case 16: return "teen";
+			case 15: return "een";
+			case 14: return "teen";
+			case 13: return "een";
+			case 12: return "lve";
+			case 11: return "ven";
+			default: return "ten";
+		}
+	}
+	public static String ones(int n) {
+		switch(n%10) {
+			case 9: return "nine";
+			case 8: return "eight";
+			case 7: return "seven";
+			case 6: return "six";
+			case 5: return "five";
+			case 4: return "four";
+			case 3: return "three";
+			case 2: return "two";
+			case 1: return "one";
+			default: return "";
+		}
 	}
 
 }

@@ -16,27 +16,14 @@ public class problem067 {
 	public static int highest = -1;
 	public static int[][] input = triangle();
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		for(int row = 0; row < input.length; row++)
-			for(int col = 0; col < input[row].length; col++)
-				highest = Math.max(highest, f(row, col, 0) );
-		System.out.println(highest);
-		
-	}
-	public static int f(int r, int c, int sum) {
-		sum+= input[r][c];
-		if(r >= input.length || c >= input[r].length || input[r][c] == 0)
-			return 0;
-		if(r == input.length-1) //max_level
-			return input[r][c];
-		if( (highest-sum)/(input.length-(r+1)) >= 100)
-			return 0;
-		
-		int a = f(r+1, c, sum);
-		int b = f(r+1, c+1, sum);
-		
-		//down right, down left
-		return input[r][c] + Math.max(a, b);
+		for(int row = input.length-2; row >= 0; row--) {
+			for(int col = 0; col < input[row].length-1; col++) {
+				if(input[row][col] == 0)
+					break;
+				input[row][col] += Math.max(input[row+1][col], input[row+1][col+1]);
+			}
+		}
+		System.out.println(input[0][0]);
 	}
 
 	public static int[][] triangle() {
