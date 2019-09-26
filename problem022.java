@@ -5,12 +5,29 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class problem022 {
+	
+//	five-thousand first names, begin by sorting it into alphabetical order.
+//	Then working out the alphabetical value for each name,
+//	multiply this value by its alphabetical position in the list to obtain a name score.
+//  
+//	For example, when the list is sorted into alphabetical order, COLIN, which is worth 3 + 15 + 12 + 9 + 14 = 53, is the 938th name in the list. So, COLIN would obtain a score of 938 × 53 = 49714.
+//
+//	What is the total of all the name scores in the file?
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String[] list = parseFile("problem019.txt");
+		String[] list = parseFile("problem022.txt");
 		
 		String[] merge = mergesort(list);
+		
+		long namescore = 0;
+		for(int i = 0; i < merge.length; i++) {
+			int temp = 0;
+			for(int c = 0; c < merge[i].length(); c++)
+				temp+= ( (merge[i].toUpperCase()).charAt(c) -'A' +1);
+			namescore += (i+1) * temp;
+		}
+		System.out.println(namescore);
 	}
 	
 //Merge Sort
