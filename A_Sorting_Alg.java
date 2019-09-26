@@ -4,17 +4,17 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class problem019 {
+public class A_Sorting_Alg {
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String[] names = parseFile("problem019.txt");
+		String[] list = parseFile("problem019.txt");
 		
-		names = mergesort(names);
-		
-		System.out.println(names.length);
+		String[] merge = mergesort(list);
+		String[] quick = quicksort(list, 0, list.length-1);
 	}
 	
+//Merge Sort
 	public static String[] mergesort(String[] list) {
 		if(list.length == 1)
 			return list;
@@ -44,17 +44,48 @@ public class problem019 {
 		return full;
 		
 	}
-	public static void swapString(String[] list, int left, int right) {
-		String temp = list[left];
-		list[left] = list[right];
-		list[right] = temp;
+	
+	
+//Quick Sort
+	public static String[] quicksort(String[] list, int start, int end) {
+		if(start == end)
+			return list;
+		list = list.clone();
+		
+		int index = start;
+		int pivot = (start+end)/2;
+		
+		int increment = 1;
+		while( increment != 0 ) {
+			if(index == pivot)
+				break;
+				
+			
+			//swap
+				increment *=-1;
+			
+			
+			//break case
+				increment = 0;
+			
+		}
+		quicksort(list, 0, 0);
+		quicksort(list, 0, 0);
+		return list;
 	}
 	
 	
-	public static String[] parseFile(String dir) throws FileNotFoundException {
+//Parsing a file
+	public static String[] parseFile(String dir){
 		File file = new File(System.getProperty("user.dir")+"/src/project_beuler/"+dir);
-		Scanner reader = new Scanner(file);
+		Scanner reader;
+		try {
+			reader = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			reader = new Scanner(System.in);
+		}
 		String contents = reader.nextLine();
+		reader.close();
 		return contents.split("(\\\"(,\\\")?)");
 	}
 
