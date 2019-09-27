@@ -54,6 +54,7 @@ public class problem019 {
 	public static String[] parseFile(String dir) throws FileNotFoundException {
 		File file = new File(System.getProperty("user.dir")+"/src/project_beuler/"+dir);
 		Scanner reader = new Scanner(file);
+		reader.close();
 		String contents = reader.nextLine();
 		return contents.split("(\\\"(,\\\")?)");
 	}
