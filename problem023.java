@@ -1,5 +1,7 @@
 package project_beuler;
 
+import java.util.ArrayList;
+
 public class problem023 {
 	
 //	A perfect number is a number for which the sum of its
@@ -24,6 +26,31 @@ public class problem023 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int n = 28123;
+		long sum = 1;
+		ArrayList<Integer> abundant = new ArrayList<Integer>();
+		for(int i = 2; i <= n; i++) {
+			//GET ABUNDANT NUMBERS
+			ArrayList<Integer> d = Interface.divisors(i, true);
+			int curSum = 0;
+			for(int x = 0; x < d.size()-1; x++)
+				curSum+= d.get(x);
+			if(curSum > i)
+				abundant.add(i);
+			
+			//CHECK TO SEE IF CUR NUMBER IS SUM OF 2 ABUNDANT
+			else if(!sumoftwo(abundant, i))
+				sum+=i;
+		}
+		System.out.println(sum);
+	
+	}
+	public static boolean sumoftwo(ArrayList<Integer> abundant, int n) {
+		for(int y = abundant.size()-1; y >= 0; y--)
+			for(int z = 0; z < abundant.size(); z++)
+				if(n - abundant.get(y) == abundant.get(z))
+					return true;
+				else if(n - abundant.get(y) < abundant.get(z)) break;
+		return false;
 	}
 
 }
