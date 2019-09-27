@@ -14,6 +14,7 @@ public class A_Sorting_Alg {
 		String[] merge = mergesort(list);
 		String[] quick = list.clone(); quicksort(quick, 0, list.length-1);
 		
+		
 		int sum = 0;
 		for(int i = 0; i < quick.length; i++)
 			sum += merge[i].compareTo(quick[i]);
