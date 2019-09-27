@@ -6,12 +6,18 @@ import java.util.Scanner;
 
 public class A_Sorting_Alg {
 
+	public static int x = 1000;
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String[] list = parseFile("problem019.txt");
+		String[] list = parseFile("problem022.txt");
 		
 		String[] merge = mergesort(list);
-		String[] quick = quicksort(list, 0, list.length-1);
+		String[] quick = list.clone(); quicksort(quick, 0, list.length-1);
+		
+		int sum = 0;
+		for(int i = 0; i < quick.length; i++)
+			sum += merge[i].compareTo(quick[i]);
+		System.out.println(sum);
 	}
 	
 //Merge Sort
@@ -47,31 +53,35 @@ public class A_Sorting_Alg {
 	
 	
 //Quick Sort
-	public static String[] quicksort(String[] list, int start, int end) {
-		if(start == end)
-			return list;
-		list = list.clone();
+	public static void quicksort(String[] list, int start, int end) {
+//		System.out.println(start+" "+end);
 		
 		int index = start;
-		int pivot = (start+end)/2;
+		int pivot = end;
 		
-		int increment = 1;
-		while( increment != 0 ) {
-			if(index == pivot)
-				break;
+		int inc = 1;
+		while( index != pivot ) {
+			if(
+				(inc == 1 && list[index].compareTo(list[pivot]) > 0) ||
+				(inc == -1 && list[pivot].compareTo(list[index]) > 0)
+			) {
+				//swap
+				String temp = list[index];
+				list[index] = list[pivot];
+				list[pivot] = temp;
 				
-			
-			//swap
-				increment *=-1;
-			
-			
-			//break case
-				increment = 0;
-			
+				int tempInt = index;
+				index = pivot;
+				pivot = tempInt;
+				
+				inc *= -1;
+			}
+			index+=inc;
 		}
-		quicksort(list, 0, 0);
-		quicksort(list, 0, 0);
-		return list;
+		if(end != pivot && start != pivot)
+			quicksort(list, start, pivot);
+		if(start != pivot && end != pivot)
+		quicksort(list, pivot, end);
 	}
 	
 	
@@ -82,6 +92,7 @@ public class A_Sorting_Alg {
 		try {
 			reader = new Scanner(file);
 		} catch (FileNotFoundException e) {
+			System.out.println("Error reading file, enter input here:");
 			reader = new Scanner(System.in);
 		}
 		String contents = reader.nextLine();
