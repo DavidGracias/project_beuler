@@ -139,6 +139,22 @@ public class Interface {
 		
 	}
 	
+	//Binary Search
+	public static int binarysearch(int[] haystack, int needle) {
+		int low = 0;
+		int high = haystack.length-1;
+		while(low <= high) {
+			int index = (low + high)/2;
+			if(haystack[index] == needle)
+				return index;
+			if(haystack[index] - needle < 0)
+				low = index+1;
+			else
+				high = index-1;
+
+		}
+		return -1;
+	}
 	
 	//Parse Arr File
 	public static String[] parseArr(String dir){
