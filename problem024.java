@@ -32,12 +32,6 @@ public class problem024 {
 				
 	}
 	
-	public static int factorial(int n) {
-		if(n == 1 || n == 0)
-			return 1;
-		return n * factorial(n-1);
-	}
-	
 	public static boolean hasDuplicates(String s) {
 		for(int x = 0; x < s.length(); x++)
 			for(int y = 0; y < s.length(); y++) {

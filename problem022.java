@@ -22,12 +22,14 @@ public class problem022 {
 		
 		long namescore = 0;
 		for(int i = 0; i < merge.length; i++) {
+			System.out.println(merge[i]);
 			int temp = 0;
 			for(int c = 0; c < merge[i].length(); c++)
-				temp+= ( (merge[i].toUpperCase()).charAt(c) -'A' +1);
-			namescore += (i+1) * temp;
+				temp+= ( (merge[i].toUpperCase()).charAt(c) - 'A' +1);
+			namescore += (i * temp);
 		}
 		System.out.println(namescore);
+		
 	}
 	
 //Merge Sort
