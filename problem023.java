@@ -32,17 +32,17 @@ public class problem023 {
 			//GET ABUNDANT NUMBERS
 			ArrayList<Integer> d = Interface.divisors(i, true);
 			int curSum = 0;
-			for(int x = 0; x < d.size()-1; x++)
+			for(int x = 0; x < d.size(); x++)
 				curSum+= d.get(x);
 			if(curSum > i)
 				abundant.add(i);
 			
 			//CHECK TO SEE IF CUR NUMBER IS SUM OF 2 ABUNDANT
-			else if(!sumoftwo(abundant, i))
+			if(!sumoftwo(abundant, i))
 				sum+=i;
+			
 		}
 		System.out.println(sum);
-	
 	}
 	public static boolean sumoftwo(ArrayList<Integer> abundant, int n) {
 		for(int y = abundant.size()-1; y >= 0; y--)

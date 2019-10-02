@@ -109,17 +109,11 @@ public class problem013 {
 				"53503534226472524250874054075591789781264330331690";
 		
 		String[] rows = input.split("\n");
-		String number = "";
-		int carryover = 0;
-		for(int y = rows[0].length()-1; y >= 0; y--) { //columns
-			int temp = carryover;
-			for(int i = 0; i < rows.length; i++) //rows
-				temp+= Integer.parseInt(rows[i].charAt(y)+"");
-			carryover = temp/10;
-			number = (temp%10)+""+number;
-		}
-		String first10 = (carryover+""+number).substring(0, 10);
-		System.out.println(first10);
+		String output = Interface.addString(rows);
+
+		System.out.println(output.substring(0, 10));
+		
 	}
+	
 
 }

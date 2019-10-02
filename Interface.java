@@ -9,22 +9,38 @@ public class Interface {
 	
 	public Interface() { }
 	
+	public static String addString(String[] rows) {
+		String number = "";
+		int carryover = 0;
+		int index = 0; //index++ in while loop condition
+		int max = 0;
+		for(int z = 0; z < rows.length; z++)
+			max = Math.max(rows[z].length(), max);
+		while(index < max) {
+			int sum = carryover;
+			for(int i = 0; i < rows.length; i++) //rows
+				if(rows[i].length()-1 >= index)
+					sum+= Integer.parseInt(rows[i].charAt(rows[i].length()-1 -index)+"");
+			
+			carryover = sum/10;
+			number = (sum%10)+""+number;
+			index++;
+		}
+		if(carryover != 0)
+			number = (carryover+""+number);
+		return number;
+	}
+	
 	public static ArrayList<Integer> divisors(int n, boolean proper){
 		ArrayList<Integer> d = new ArrayList<Integer>();
-		int max = 0;
-		for(int i = 1; i <= Math.sqrt(n); i++) {
-			if(i == Math.sqrt(n) && proper)
-				break;
+		d.add(1);
+		for(int i = 2; i <= Math.sqrt(n); i++) {
 			if(n%i == 0) {
 				d.add(i);
+				if(i != n/i)
 				d.add(n/i);
-				if(n/i > d.get(max))
-					max = d.size()-1;
 			}
 		}
-		int temp = d.get(max);
-		d.set(max, d.get(d.size()-1));
-		d.set(d.size()-1, temp);
 		return d;
 	}
 	
