@@ -9,6 +9,11 @@ public class Interface {
 	
 	public Interface() { }
 	
+
+	public static int occurances(String haystack, String needle) {
+		return haystack.split(needle).length;
+	}
+	
 	public static String addString(String[] rows) {
 		String number = "";
 		int carryover = 0;
