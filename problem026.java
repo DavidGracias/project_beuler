@@ -26,6 +26,7 @@ public class problem026 {
 	public static int recurring(String haystack) {
 		ArrayList<Object> patterns = new ArrayList<Object>();
 		for(int x = 0; x < haystack.length(); x++) {
+			
 			if(true)
 				break;
 		}
