@@ -1,7 +1,5 @@
 package project_beuler;
 
-import java.util.ArrayList;
-
 public class problem026 {
 	
 	//Where 0.1(6) means 0.166666..., and has a 1-digit recurring cycle.
@@ -13,27 +11,25 @@ public class problem026 {
 		// TODO Auto-generated method stub
 		String longest = "";
 		int D = 1;
-		for(int d = 1; d < 1000; d++) {
-			String decimal = Interface.divide(1, d, 1000);
+		for(int d = 2; d < 1000; d++) {
+			String decimal = Interface.divide(1, d, 2000);
 			String newest = repeating(decimal);
 			if( newest.length() > longest.length() ) {
 				longest = newest;
 				D = d;
 			}
-			
 		}
 		System.out.println(D);
-		
 		
 	}
 	public static String repeating(String haystack) {
 		String needle = haystack.substring(haystack.length()-1);
+		
 		for(int i = haystack.length()-needle.length(); i >= needle.length(); i--) {
-			
-			//break pattern found
+			//out of bounds
 			if(needle.compareTo( haystack.substring(i-needle.length(), i) ) == 0)
 				return needle;
-
+			
 			//continue pattern
 			needle = haystack.charAt(i-1) + needle;
 		}
