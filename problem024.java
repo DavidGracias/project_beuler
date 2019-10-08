@@ -34,12 +34,11 @@ public class problem024 {
 	
 	public static boolean hasDuplicates(String s) {
 		for(int x = 0; x < s.length(); x++)
-			for(int y = 0; y < s.length(); y++) {
+			for(int y = 0; y < s.length(); y++)
 				if(y == x)
 					continue;
-				if(s.charAt(x) == s.charAt(y))
+				else if(s.charAt(x) == s.charAt(y))
 					return true;
-			}
 		return false;
 	}
 }

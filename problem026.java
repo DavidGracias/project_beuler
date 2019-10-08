@@ -11,36 +11,33 @@ public class problem026 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int longest = -1;
+		String longest = "";
 		int D = 1;
 		for(int d = 1; d < 1000; d++) {
-			String temp = ""+(double)1/d;
-			int next = recurring(temp);
-			if(next > longest) {
-				longest = next;
+			String decimal = Interface.divide(1, d, 1000);
+			String newest = repeating(decimal);
+			if( newest.length() > longest.length() ) {
+				longest = newest;
 				D = d;
 			}
-		}
-	}
-	
-	public static int recurring(String haystack) {
-		ArrayList<Object> patterns = new ArrayList<Object>();
-		for(int x = 0; x < haystack.length(); x++) {
 			
-			if(true)
-				break;
 		}
-		return 0;
+		System.out.println(D);
+		
+		
 	}
-	public static int occurances(String haystack, String needle) {
-		String[] split = haystack.split(needle);
-		for(int x = 1; x < split.length-1; x++) {
-			if(split[x].length() > 0)
-				return 0;
-		}
-		return haystack.split(needle).length;
-	}
+	public static String repeating(String haystack) {
+		String needle = haystack.substring(haystack.length()-1);
+		for(int i = haystack.length()-needle.length(); i >= needle.length(); i--) {
+			
+			//break pattern found
+			if(needle.compareTo( haystack.substring(i-needle.length(), i) ) == 0)
+				return needle;
 
+			//continue pattern
+			needle = haystack.charAt(i-1) + needle;
+		}
+		return "";
+	}
 	
-
 }

@@ -9,10 +9,6 @@ public class Interface {
 	
 	public Interface() { }
 	
-
-	public static int occurances(String haystack, String needle) {
-		return haystack.split(needle).length;
-	}
 	
 	public static String addString(String[] rows) {
 		String number = "";
@@ -175,6 +171,21 @@ public class Interface {
 
 		}
 		return -1;
+	}
+	
+	//Long Division (string)
+	public static String divide(int n, int d, int precision) {
+		String number = "";
+		while(number.length() < precision && n != 0) {
+			n*=10;
+			while(n/d == 0) {
+				number+="0";
+				n*=10;
+			}
+			number+=(n/d);
+			n%=d;
+		}
+		return number;
 	}
 	
 	//Parse Arr File
