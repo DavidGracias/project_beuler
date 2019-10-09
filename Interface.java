@@ -3,12 +3,84 @@ package project_beuler;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Interface {
 	
 	public Interface() { }
 	
+	public static int lcm(int f, int l) {
+		ArrayList<Integer> dF = Interface.primeDivisors(f);
+		ArrayList<Integer> dL = Interface.primeDivisors(l);
+		int mult = 1;
+		Collections.sort(dF);
+		Collections.sort(dL);
+		for(int x = 0, y=0; x < dF.size() || y < dL.size();) {
+			if(x >= dF.size())
+				mult *= dL.get(y++);
+			
+			else if(y >= dL.size() || dF.get(x) < dL.get(y))
+				mult *= dF.get(x++);
+			
+			else if(dF.get(x) > dL.get(y))
+				mult *= dL.get(y++);
+			
+			else if(dF.get(x) == dL.get(y)) {
+				mult*=dF.get(x);
+				x++; y++;
+			}
+		}
+		return mult;
+	}
+	
+	public static ArrayList<Integer> primeDivisors(int n){
+		ArrayList<Integer> d = new ArrayList<Integer>();
+		int i = 2;
+		while(n%i != 0) i++;
+		//if i is prime
+		if(Interface.isPrime(i))
+			d.add(i);
+		else
+			d = mergeLists(d, primeDivisors(i));
+		if(Interface.isPrime(n))
+			return d;
+		//if n/i is prime
+		if(Interface.isPrime(n/i))
+			d.add(n/i);
+		else
+			d = mergeLists(d, primeDivisors(n/i));
+		return d;
+		
+	}
+	public static <E>ArrayList<E> mergeLists(ArrayList<E> list1, ArrayList<E> list2){
+		for(int i = 0; i < list2.size(); i++)
+			list1.add(list2.get(i));
+		return list1;
+	}
+	
+	public static <T>String Stringify(T[] array) {
+		String output = "[";
+		for(int i = 0; i < array.length; i++) {
+			output+=array[i];
+			if(i != array.length-1)
+				output+=", ";
+		}
+		return output+"]";
+	}
+	public static <E>String Stringify(ArrayList<E> array) {
+		return Stringify(array.toArray(new Integer[array.size()]));
+	}
+	
+	public static boolean isPrime(int n) {
+		//Primes are 2, 3, 5, 7, etc.
+		if(n < 2 || (n != 2 && n%2 == 0) )
+			return false;
+		for(int i = 3; i < n; i+=2)
+			if(n%i == 0)
+				return false;
+		return true;
+	}
 	
 	public static String addString(String[] rows) {
 		String number = "";
@@ -32,7 +104,7 @@ public class Interface {
 		return number;
 	}
 	
-	public static ArrayList<Integer> divisors(int n, boolean proper){
+	public static Integer[] divisors(int n, boolean proper){
 		ArrayList<Integer> d = new ArrayList<Integer>();
 		d.add(1);
 		for(int i = 2; i <= Math.sqrt(n); i++) {
@@ -42,11 +114,13 @@ public class Interface {
 				d.add(n/i);
 			}
 		}
-		return d;
+		
+		return d.toArray(new Integer[d.size()]);
 	}
 	
+	
 	//Sieve of Atkin
-	public int[] primeGen(int upper) {
+	public static int[] primeGen(int upper) {
 		
 		boolean[] is_prime = new boolean[upper];
 		for (int i = 0; i < upper; i++) is_prime[i] = false;

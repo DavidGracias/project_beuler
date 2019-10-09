@@ -30,10 +30,10 @@ public class problem023 {
 		ArrayList<Integer> abundant = new ArrayList<Integer>();
 		for(int i = 2; i <= n; i++) {
 			//GET ABUNDANT NUMBERS
-			ArrayList<Integer> d = Interface.divisors(i, true);
+			Integer[] d = Interface.divisors(i, true);
 			int curSum = 0;
-			for(int x = 0; x < d.size(); x++)
-				curSum+= d.get(x);
+			for(int x = 0; x < d.length; x++)
+				curSum+= d[x];
 			if(curSum > i)
 				abundant.add(i);
 			
