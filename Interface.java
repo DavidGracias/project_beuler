@@ -3,6 +3,7 @@ package project_beuler;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 
@@ -69,7 +70,7 @@ public class Interface {
 		return output+"]";
 	}
 	public static <E>String Stringify(ArrayList<E> array) {
-		return Stringify(array.toArray(new Integer[array.size()]));
+		return Stringify( array.toArray(new Object[array.size()]) );
 	}
 	
 	public static boolean isPrime(int n) {
@@ -239,6 +240,21 @@ public class Interface {
 			if(haystack[index] == needle)
 				return index;
 			if(haystack[index] - needle < 0)
+				low = index+1;
+			else
+				high = index-1;
+
+		}
+		return -1;
+	}
+	public static int binarysearch(String[] haystack, String needle) {
+		int low = 0;
+		int high = haystack.length-1;
+		while(low <= high) {
+			int index = (low + high)/2;
+			if(haystack[index].compareTo(needle) == 0)
+				return index;
+			if(haystack[index].compareTo(needle) < 0)
 				low = index+1;
 			else
 				high = index-1;
