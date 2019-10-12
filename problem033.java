@@ -30,42 +30,39 @@ public class problem033 {
 		System.out.println(frac[0]+"/"+frac[1]);
 	}
 	public static boolean isCurious(String n, String d) {
-		if( !Interface.hasDuplicates(n, d) ) return false;
+		String dup = duplicate(n, d);
+		if( dup.length() == 0 ) return false;
 		
-		Integer[] one = Interface.divisors(Integer.parseInt(n));
-		Integer[] two = Interface.divisors(Integer.parseInt(d));
-		//find duplicates
-		int min = Math.min(n.length(), d.length());
-		for(int z = 0; z < min; z++)
-		if( d.indexOf( n.charAt(z) ) != -1) //for each duplicate found
-			for(Integer cOne : one)
-			for(Integer cTwo : two) {
-				String dup = n.charAt(z)+"";
-				if(cOne == Integer.parseInt(dup) && cTwo == Integer.parseInt(dup) ) {
-					//not n or d, its n-dup && d-dup
-					int newN = Integer.parseInt(String.join("", n.split(dup)));
-					int newD = Integer.parseInt(String.join("", d.split(dup)));
-					int[] frac = Interface.simplify(newN, newD);
-
-					if( //Integer.parseInt(n) != frac[0] && Integer.parseInt(d) != frac[1] &&
-						Math.abs(
-							Double.parseDouble(n)/Double.parseDouble(d) -
-							(double) frac[0]/(double)frac[1]
-						) < .0000001
-					) {
-						
-						System.out.print(n+"/"+d+"\t");
-						System.out.println(Double.parseDouble(n)/Double.parseDouble(d));
-						System.out.print(frac[0]+"/"+frac[1]+"\t");
-						System.out.println(frac[0]/(double)frac[1]);
-						System.out.println();
-						return true;
-					}
-				}
-			}
+		int newN = Integer.parseInt(remove(n, dup));
+		int newD = Integer.parseInt(remove(d, dup));
+		int[] frac = Interface.simplify(newN, newD);
+		
+		if( 
+			Math.abs(
+				Double.parseDouble(n)/Double.parseDouble(d) -
+				(double) frac[0]/(double)frac[1]
+			) < .0000001
+		) {
+			nSum*= frac[0]; dSum*= frac[1];
+			System.out.print(n+"/"+d+"\t");
+			System.out.println(Double.parseDouble(n)/Double.parseDouble(d));
+			System.out.print(frac[0]+"/"+frac[1]+"\t");
+			System.out.println(frac[0]/(double)frac[1]);
+			System.out.println();
+			return true;
+		}
 		return false;
 	}
 	
-	//rounding errors...?
-
+	public static String remove(String haystack, String needle) {
+		return haystack.substring(0, haystack.indexOf(needle)) + haystack.substring(haystack.indexOf(needle)+1);
+	}
+	
+	public static String duplicate(String a, String b) {
+		for(int x = 0; x < a.length(); x++)
+		for(int y = 0; y < b.length(); y++)
+		if(a.charAt(x) == b.charAt(y))
+			return ""+a.charAt(x);
+		return "";
+	}
 }
