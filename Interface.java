@@ -11,6 +11,28 @@ public class Interface {
 	
 	public Interface() { }
 	
+	public static int[] simplify(int a, int b) {
+		Integer[] one = Interface.divisors(a);
+		Integer[] two = Interface.divisors(b);
+		for(int x = 0; x < one.length; x++)
+			for(int y = 0; y < two.length; y++)
+				if(one[x] == two[y]) {
+					a/=one[x];
+					b/=one[x];
+					two[y] = 0;
+					break;
+				}
+		return new int[]{a, b};
+	}
+	
+	public static boolean hasDuplicates(String one, String two) {
+		for(String cOne : one.split(""))
+			for(String cTwo : two.split(""))
+				if(cOne.compareTo(cTwo) == 0)
+					return true;
+		return false;
+	}
+	
 	public static int lcm(int f, int l) {
 		ArrayList<Integer> dF = Interface.primeDivisors(f);
 		ArrayList<Integer> dL = Interface.primeDivisors(l);
@@ -105,7 +127,7 @@ public class Interface {
 		return number;
 	}
 	
-	public static Integer[] divisors(int n, boolean proper){
+	public static Integer[] divisors(int n){
 		ArrayList<Integer> d = new ArrayList<Integer>();
 		d.add(1);
 		for(int i = 2; i <= Math.sqrt(n); i++) {
