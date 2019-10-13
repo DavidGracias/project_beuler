@@ -1,7 +1,5 @@
 package project_beuler;
 
-import java.util.ArrayList;
-
 public class problem033 {
 	
 //	The fraction 49/98 is a curious fraction, as an inexperienced mathematician

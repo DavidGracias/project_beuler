@@ -13,24 +13,12 @@ public class problem036 {
 		int sum = 0;
 		int n = 1000000;
 		for(int i = 0; i < n; i++)
-			if(isPalindrome(i+"") && isPalindrome(base2(i)))
+			if(isPalindrome(i+"") && isPalindrome(Interface.base(2, i))) {
 				sum+=i;
+			}
 		System.out.println(sum);
 	}
-	public static String base2(int n) {
-		String output = "";
-		int max = 0;
-		while(Math.pow(2, max+1) < n) max++;
-		
-		while(n != 0) {
-			if(n / Math.pow(2, max) >= 1)
-				output+="1";
-			else output+="0";
-			n= n% (int)Math.pow(2, max);
-			max--;
-		}
-		return output;
-	}
+	
 	
 	public static boolean isPalindrome(String n) {
 		for(int i = 0; i < n.length()/2; i++)

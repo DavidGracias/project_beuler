@@ -3,13 +3,28 @@ package project_beuler;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 
 public class Interface {
 	
 	public Interface() { }
+	
+	public static String base(int base, int n) {
+		String output = "";
+		int max = 0;
+		while(Math.pow(base, max+1) <= n) max++;
+		
+		while(max >= 0) {
+			if(n / Math.pow(base, max) >= 1)
+				output+="1";
+			else output+="0";
+			n= n% (int)Math.pow(base, max);
+			max--;
+		}
+		
+		return output;
+	}
 	
 	public static int[] simplify(int a, int b) {
 		Integer[] one = Interface.divisors(a);
