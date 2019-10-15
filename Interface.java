@@ -10,21 +10,41 @@ public class Interface {
 	
 	public Interface() { }
 	
+	public static boolean isPandigital(String n) {
+		if(n.length() != 9 || n.indexOf("0") != -1) return false;
+		int[] counter = new int[9];
+		for( String a: n.split("") ) {
+			int i = Integer.parseInt(a);
+			if( counter[i-1] == 1) return false;
+			counter[i-1]++;
+		}
+		return true;
+	}
+	
 	public static String base(int base, int n) {
 		String output = "";
 		int max = 0;
 		while(Math.pow(base, max+1) <= n) max++;
 		
 		while(max >= 0) {
-			if(n / Math.pow(base, max) >= 1)
-				output+="1";
-			else output+="0";
+			int value = n / (int) Math.pow(base, max);
+			
+			switch(value) {
+				case 10: output+="a"; break;
+				case 11: output+="b"; break;
+				case 12: output+="c"; break;
+				case 13: output+="d"; break;
+				case 14: output+="e"; break;
+				case 15: output+="f"; break;
+				default: output+=""+value;
+			}
 			n= n% (int)Math.pow(base, max);
 			max--;
 		}
 		
 		return output;
 	}
+	
 	
 	public static int[] simplify(int a, int b) {
 		Integer[] one = Interface.divisors(a);
