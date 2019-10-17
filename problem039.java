@@ -11,12 +11,21 @@ public class problem039 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
+		int max = -1;
+		int length = 0;
 		for(int p = 1+1+1; p <= 1000; p++) {
-			for(int a = 1; a < p-Math.pow(a, 2)-1; a++) {
-				
+			int current = 0;
+			for(int a = 1; a <= (double) 2/3*p; a++) {
+				for(int b = 1; b <= a; b++)
+					if(Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2)) == (p-b-a))
+						current++;
+			}
+			if(current > length) {
+				max = p;
+				length = current;
 			}
 		}
+		System.out.println(max+" "+length);
 	}
 
 }

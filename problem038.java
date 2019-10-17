@@ -27,7 +27,7 @@ public class problem038 {
 		for(double n = 2; n <= 9; n++)
 		for(int i = (int) Math.pow(10, Math.floor(9/n)-1); i <= Math.pow(10, Math.ceil(9/n)-1); i++) {
 			String concat = returnConcat((int)n, i);
-			if( Interface.isPandigital(concat) )
+			if( Interface.isPandigital(concat, 9) )
 				max = Math.max(max, Integer.parseInt(concat));
 		}
 		

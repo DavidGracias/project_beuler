@@ -10,12 +10,12 @@ public class Interface {
 	
 	public Interface() { }
 	
-	public static boolean isPandigital(String n) {
-		if(n.length() != 9 || n.indexOf("0") != -1) return false;
-		int[] counter = new int[9];
+	public static boolean isPandigital(String n, int length) {
+		if(n.length() != length || n.indexOf("0") != -1) return false;
+		int[] counter = new int[length];
 		for( String a: n.split("") ) {
 			int i = Integer.parseInt(a);
-			if( counter[i-1] == 1) return false;
+			if( i > length || counter[i-1] == 1) return false;
 			counter[i-1]++;
 		}
 		return true;
@@ -134,7 +134,7 @@ public class Interface {
 		//Primes are 2, 3, 5, 7, etc.
 		if(n < 2 || (n != 2 && n%2 == 0) )
 			return false;
-		for(int i = 3; i < n; i+=2)
+		for(int i = 3; i < Math.sqrt(n); i+=2)
 			if(n%i == 0)
 				return false;
 		return true;
