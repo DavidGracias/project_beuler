@@ -51,7 +51,6 @@ public class Interface {
 		return output;
 	}
 	
-	
 	public static int[] simplify(int a, int b) {
 		Integer[] one = Interface.divisors(a);
 		Integer[] two = Interface.divisors(b);
@@ -78,8 +77,6 @@ public class Interface {
 		ArrayList<Integer> dF = Interface.primeDivisors(f);
 		ArrayList<Integer> dL = Interface.primeDivisors(l);
 		int mult = 1;
-		Collections.sort(dF);
-		Collections.sort(dL);
 		for(int x = 0, y=0; x < dF.size() || y < dL.size();) {
 			if(x >= dF.size())
 				mult *= dL.get(y++);
@@ -166,6 +163,29 @@ public class Interface {
 		if(carryover != 0)
 			number = (carryover+""+number);
 		return number;
+	}
+	
+	public static String multString(String[] rows) {
+		if(rows.length == 1) return rows[0];
+		int carryover = 0;
+		String[] addRows = new String[rows.length-1];
+		for(int y = 0; y < rows[0].length(); y++) {
+			String[] number = new String[rows[y].length()];
+			for(int z = rows[y].length()-1; z >= 0; z--) {
+				int temp = Integer.parseInt(rows[0])* Integer.parseInt(rows[y].charAt(z)+"") +carryover;
+				String placeholder = Math.pow(10, y)+"";
+				number[y] = temp+placeholder.substring(1);
+				carryover = temp/10;
+			}
+			addRows[y] = addString(number);
+		}
+		
+//		for(int y = n.length()-1; y >= 0; y--) { //columns
+//			int temp = 2* Integer.parseInt(n.charAt(y)+"") +carryover;
+//			number = (temp%10)+""+number;
+//			carryover = temp/10;
+//		}
+		return multString(addRows);
 	}
 	
 	public static Integer[] divisors(int n){
