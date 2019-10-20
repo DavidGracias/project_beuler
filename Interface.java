@@ -10,6 +10,12 @@ public class Interface {
 	
 	public Interface() { }
 	
+	public static boolean isQuadable(double a, double b, double c) {
+		double x1 = (-b - Math.sqrt(Math.pow(b, 2) - 4*a*c) )/(2*a);
+		double x2 = (-b + Math.sqrt(Math.pow(b, 2) - 4*a*c) )/(2*a);
+		return x1 == (int) x1 || x2 == (int) x2;
+	}
+	
 	public static boolean isPandigital(String n, int length) {
 		if(n.length() != length || n.indexOf("0") != -1) return false;
 		int[] counter = new int[length];
@@ -134,7 +140,7 @@ public class Interface {
 		//Primes are 2, 3, 5, 7, etc.
 		if(n < 2 || (n != 2 && n%2 == 0) )
 			return false;
-		for(int i = 3; i < Math.sqrt(n); i+=2)
+		for(int i = 3; i <= Math.sqrt(n); i+=2)
 			if(n%i == 0)
 				return false;
 		return true;
