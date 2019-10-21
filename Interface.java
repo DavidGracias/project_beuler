@@ -135,6 +135,7 @@ public class Interface {
 	
 	public static boolean isPrime(int n) {
 		//Primes are 2, 3, 5, 7, etc.
+		//1, 3, 7, 9
 		if(n < 2 || (n != 2 && n%2 == 0) )
 			return false;
 		for(int i = 3; i <= Math.sqrt(n); i+=2)
@@ -173,9 +174,11 @@ public class Interface {
 			String[] number = new String[rows[0].length()];
 			for(int e = rows[0].length()-1; e >= 0; e--) { //cycle through each digit of multiplicator
 				int carryover = 0;
-				number[e] = ""+((int)Math.pow(10, rows[0].length()-1-e)+"").substring(1);
+				number[e] = "";
+				for(int pow = e+1; pow < rows[0].length(); pow++ )
+					number[e] += 0;
 				for(int z = rows[1].length()-1; z >= 0; z--) { //cycle through each digit of multiplier
-					int temp = Integer.parseInt(rows[0].charAt(e)+"") * Integer.parseInt(rows[1].charAt(z)+"");
+					int temp = Integer.parseInt(rows[0].charAt(e)+"") * Integer.parseInt(rows[1].charAt(z)+"")+carryover;
 					number[e] = (temp%10)+""+number[e];
 					carryover = temp/10;
 				}
