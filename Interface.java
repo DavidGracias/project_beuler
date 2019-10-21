@@ -148,8 +148,9 @@ public class Interface {
 		int carryover = 0;
 		int index = 0; //index++ in while loop condition
 		int max = 0;
-		for(int z = 0; z < rows.length; z++)
+		for(int z = 0; z < rows.length; z++) {
 			max = Math.max(rows[z].length(), max);
+		}
 		while(index < max) {
 			int sum = carryover;
 			for(int i = 0; i < rows.length; i++) //rows
@@ -167,23 +168,23 @@ public class Interface {
 	
 	public static String multString(String[] rows) {
 		if(rows.length == 1) return rows[0];
-		int carryover = 0;
-		String[] addRows = new String[rows.length-1];
-		for(int y = 0; y < rows[0].length(); y++) {
-			String[] number = new String[rows[y].length()];
-			for(int z = rows[y].length()-1; z >= 0; z--) {
-				int temp = Integer.parseInt(rows[0])* Integer.parseInt(rows[y].charAt(z)+"") +carryover;
-				String placeholder = Math.pow(10, y)+"";
-				number[y] = temp+placeholder.substring(1);
-				carryover = temp/10;
+		String[] addRows = new String[rows.length-1]; // numbers with rows[0] distributed to each
+//		for(int y = 1; y < rows.length; y++) { // for each remaining #, mult rows[0] to each
+			String[] number = new String[rows[0].length()];
+			for(int e = rows[0].length()-1; e >= 0; e--) { //cycle through each digit of multiplicator
+				int carryover = 0;
+				number[e] = ""+((int)Math.pow(10, rows[0].length()-1-e)+"").substring(1);
+				for(int z = rows[1].length()-1; z >= 0; z--) { //cycle through each digit of multiplier
+					int temp = Integer.parseInt(rows[0].charAt(e)+"") * Integer.parseInt(rows[1].charAt(z)+"");
+					number[e] = (temp%10)+""+number[e];
+					carryover = temp/10;
+				}
+				if(carryover != 0)
+					number[e] = carryover + number[e];
 			}
-			addRows[y] = addString(number);
-		}
-		
-//		for(int y = n.length()-1; y >= 0; y--) { //columns
-//			int temp = 2* Integer.parseInt(n.charAt(y)+"") +carryover;
-//			number = (temp%10)+""+number;
-//			carryover = temp/10;
+			addRows[0] = addString(number);
+			for(int y = 2; y < rows.length; y++)
+				addRows[y-1] = rows[y];
 //		}
 		return multString(addRows);
 	}

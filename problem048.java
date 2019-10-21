@@ -8,8 +8,16 @@ public class problem048 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int n = 10;
-		System.out.println(Interface.multString(new String[] {10+"", 10+""}));
+		int n = 1000;
+		String[] summation = new String[n];
+		for(int series = 1; series <= n; series++) {
+			String[] current = new String[series];
+			for(int i = 0; i < current.length; i++)
+				current[i] = series+"";
+			summation[series-1] = Interface.multString(current);
+		}
+		String sum = Interface.addString(summation);
+		System.out.println(sum.substring(sum.length()-10));
 	}
 
 }
