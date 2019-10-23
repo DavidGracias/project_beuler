@@ -3,16 +3,36 @@ package project_beuler;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 
 public class Interface {
 	
 	public Interface() { }
 	
+	public static boolean in(String needle, String[] haystack) {
+		for(String value: haystack)
+			if(value.equals(needle))
+				return true;
+		return false;
+	}
+	
+	public static void permutations(ArrayList<String> list, String alphabet, String path) {
+		if(alphabet.length() == 0)
+			list.add(path);
+		for(int i = 0; i < alphabet.length(); i++)
+			permutations(list, alphabet.substring(0, i)+alphabet.substring(i+1, alphabet.length()), path+alphabet.charAt(i));
+	}
+	
+	public static int nextPrime(int n) {
+		do {
+			n++;
+		} while( !Interface.isPrime(n) );
+		return n;
+	}
+	
 	public static boolean isQuadable(double a, double b, double c) {
-		double x1 = (-b - Math.sqrt(Math.pow(b, 2) - 4*a*c) )/(2*a);
-		double x2 = (-b + Math.sqrt(Math.pow(b, 2) - 4*a*c) )/(2*a);
+		double x1 = (-b - Math.sqrt(Math.pow(b, 2) - 4*a*c) )/(2.0*a);
+		double x2 = (-b + Math.sqrt(Math.pow(b, 2) - 4*a*c) )/(2.0*a);
 		return x1 == (int) x1 || x2 == (int) x2;
 	}
 	
