@@ -15,6 +15,13 @@ public class problem044 {
 //	what is the value of D?
 
 	public static void main(String[] args) {
+//		p_n - p_k = n*(3*n-1)/2 - k*(3*k-1)/2
+//		3/2*n^2 - n/2 - 3/2*k^2 + k/2
+//		i/2(3*(n^2 - k^2) - n + k)
+//		1/2( 3*(n+k)(n-k) - (n+k) )
+		
+		
+		
 		// TODO Auto-generated method stub
 		long distance = Integer.MAX_VALUE;
 		

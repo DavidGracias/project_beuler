@@ -13,7 +13,17 @@ public class problem053 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		int target = 1000000;
+		int hits = 0;
+		for(int n = 1; n <= 100; n++) {
+			for(int r = 1; r <= n; r++) {
+				double comb = 1;
+				for(int i = 0; i < r; i++)
+					comb = comb * (n-i)/(i+1.0);
+				if(comb > target)
+					hits++;
+			}
+		}
+		System.out.println(hits);
 	}
-
 }

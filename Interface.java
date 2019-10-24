@@ -9,6 +9,13 @@ public class Interface {
 	
 	public Interface() { }
 	
+	public static boolean isPalindrome(String s) {
+		for(int i = 0; i < s.length()/2; i++)
+			if(s.charAt(i) != s.charAt(s.length()-1-i))
+				return false;
+		return true;
+	}
+	
 	public static boolean in(String needle, String[] haystack) {
 		for(String value: haystack)
 			if(value.equals(needle))
@@ -140,7 +147,7 @@ public class Interface {
 		return list1;
 	}
 	
-	public static <T>String Stringify(T[] array) {
+	public static String Stringify(Object[] array) {
 		String output = "[";
 		for(int i = 0; i < array.length; i++) {
 			output+=array[i];
