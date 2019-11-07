@@ -10,18 +10,20 @@ public class problem053 {
 //	It is not until n=23, that a value exceeds one-million: (23 10) = 1144066
 //	
 //	How many, not necessarily distinct, values of (n r) where 1 <= n <= 100 are greater than one-million?
-
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int target = 1000000;
 		int hits = 0;
 		for(int n = 1; n <= 100; n++) {
-			for(int r = 1; r <= n; r++) {
+			for(int r = 2; r < n; r++) {
 				double comb = 1;
 				for(int i = 0; i < r; i++)
 					comb = comb * (n-i)/(i+1.0);
-				if(comb > target)
-					hits++;
+				if(comb > target) {
+					hits+= n-2*r+1;
+					break;
+				}
 			}
 		}
 		System.out.println(hits);

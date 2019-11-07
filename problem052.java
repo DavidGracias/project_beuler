@@ -27,6 +27,8 @@ public class problem052 {
 		System.out.println(i*6);
 			
 	}
+	
+	
 	public static boolean sameDigits(String s1, String s2) {
 		if(s1.length() != s2.length()) return false;
 		while(s1.length() > 0) {
