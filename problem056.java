@@ -11,7 +11,25 @@ public class problem056 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
+		int max = 0;
+		for(int a = 100; a > 0; a--)
+			if(a% 10 != 0)
+			for(int b = 100; b > 0; b--) {
+				String[] power = new String[b];
+				for(int i = 0; i < power.length; i++)
+					power[i] = a+"";
+				String value = Interface.multString(power);
+				if( value.length() < max/10 )
+					break;
+				max = Math.max( max, digitSum(value) );
+			}
+		System.out.println(max);
+	}
+	public static int digitSum(String number) {
+		int i = 0;
+		for(int x = 0; x < number.length(); x++)
+			i += Integer.parseInt(number.charAt(x)+"");
+		return i;
 	}
 
 }
