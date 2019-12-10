@@ -9,6 +9,10 @@ public class Interface {
 	
 	public Interface() { }
 	
+	public static boolean isInteger(double n) {
+		return n == (int) n;
+	}
+	
 	public static boolean isPalindrome(String s) {
 		for(int i = 0; i < s.length()/2; i++)
 			if(s.charAt(i) != s.charAt(s.length()-1-i))
@@ -31,12 +35,13 @@ public class Interface {
 	}
 	
 	public static int nextPrime(int n) {
+		if(n%2 == 0) n++;
 		do {
-			n++;
+			n+=2;
 		} while( !Interface.isPrime(n) );
 		return n;
 	}
-	
+
 	public static boolean isQuadable(double a, double b, double c) {
 		double x1 = (-b - Math.sqrt(Math.pow(b, 2) - 4*a*c) )/(2.0*a);
 		double x2 = (-b + Math.sqrt(Math.pow(b, 2) - 4*a*c) )/(2.0*a);
@@ -90,6 +95,17 @@ public class Interface {
 					break;
 				}
 		return new int[]{a, b};
+	}
+	public static long[] simplify(long a, long b) {
+		for(int i = 2; i <= Math.min(a, b); i+=0) {
+			if(a%i == 0 && b%1 == 0) {
+				a /= i;
+				b /= i;
+				continue;
+			}
+			i++;
+		}
+		return new long[]{a, b};
 	}
 	
 	public static boolean hasDuplicates(String one, String two) {

@@ -1,5 +1,8 @@
 package project_beuler;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class problem059 {
 	
 //	Each character on a computer is assigned a unique code and the
@@ -32,16 +35,51 @@ public class problem059 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String[] input = Interface.parseArr("problem059.txt")[0].split(",");
-		int key = 0;
+		Scanner reader = new Scanner(System.in);
 		
-		int[] output = new int[input.length];
-		for(int i = 0; i < output.length; i++)
-			output[i] = Integer.parseInt(input[i]) ^ key;
-		for(int c : output)
-			System.out.print( toAscii(c) );
+		for(char key1 = 'a';  key1 <= 'z'; key1++)
+		for(char key2 = 'a'; key2 <= 'z'; key2++)
+		for(char key3 = 'a'; key3 <= 'z'; key3++) {
+			int cycle = 0;
+			boolean english = true;
+			String translated = "";
+			int sum = 0;
+			for(String i : input) {
+				char n = decrypt(i, new char[] {key1, key2, key3}[cycle]);
+				english &= isEnglish(n);
+				translated += n;
+				sum += n;
+				cycle = (cycle+1)%3;
+			}
+			if( english && !quit(reader) ) {
+				System.out.println(translated);
+				System.out.println("KEYS: "+ key1 +" "+ key2 +" "+ key3);
+				System.out.println("SUM: "+sum);
+			}
+		}
 	}
-	public static char toAscii(int n) {
-		return (char) n;
+	public static boolean isEnglish(char c) {
+		return //32 <= c && c <= 127;
+		 
+		(
+			('a' <= c && c <= 'z') ||
+			('A' <= c && c <= 'Z') ||
+			('0' <= c && c <= '9') ||
+			 c == ' ' || c == '\t' || c == '\n' ||
+			 c == '.' || c == ',' || c == '!' || c == '?' || c == '\"' || c == '\'' ||
+			 c == '/' || c == '\\' || c == '-' || c == '_' || c == '(' || c == ')' || c == '+' || c == '=' ||
+			 c == ';' || c == ':' || c == '#' || c == '$' || c == '%' || c == '^' || c == '&' || c == '*' || // c == '
+			 c == '{' || c == '}' || c == '[' || c == ']' || c == '<' || c == '>' || c == '`'|| c == '~'
+		);
+	}
+	
+	public static char decrypt(String n, int key) {
+		return (char) (Integer.parseInt(n) ^ key);
+	}
+	
+	public static boolean quit(Scanner reader) {
+		System.out.println("\nPress enter to continue, anything else to quit;");
+		return reader.nextLine().length() > 0;
 	}
 
 }

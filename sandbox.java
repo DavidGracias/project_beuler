@@ -1,31 +1,21 @@
 package project_beuler;
 import java.math.BigInteger; 
 
-public class problem057 {
+public class sandbox {
 	
-//	It is possible to show that the square root of two can be expressed as an infinite continued fraction.
-	
-//	Root(2) = 1+
-//		1/(2 + 1/(
-//			2 + 1/(
-//				2 + ...
-//			)
-//		)
-	 
-//	In the first one-thousand expansions, how many fractions contain a
-//	numerator with more digits than the denominator?
-
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
 		int counter = 0;
-		for(int i = 0; i < 1000; i++) {
-			BigInteger[] frac = addFrac( new BigInteger[]{BigInteger.valueOf(1), BigInteger.valueOf(1)}, inverse(root2(i)) );
-			if( (frac[0]+"").length() > (frac[1]+"").length() ) {
-				counter++;
-			}
+		int i = 100;
+		BigInteger[] frac = addFrac( new BigInteger[]{BigInteger.valueOf(1), BigInteger.valueOf(1)}, inverse(root2(i)) );
+		if( (frac[0]+"").length() > (frac[1]+"").length() ) {
+			counter++;
 		}
-		System.out.println(counter);
+		
+
+		System.out.println(frac[0] +" / "+ frac[1]);
+		System.out.println( (frac[0]+"").length() );
 	}
 	
 	public static BigInteger[] root2(int n) {
